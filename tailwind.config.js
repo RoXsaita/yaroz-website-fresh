@@ -75,7 +75,7 @@ module.exports = {
         }
       },
       backgroundImage: {
-        'sprinkle-pattern': "url('/images/sprinkle-pattern.svg')",
+        'sprinkle-pattern': "url('/images/sprinkle-pattern_file.svg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },

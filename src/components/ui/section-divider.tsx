@@ -93,7 +93,7 @@ export function SectionDivider({
       aria-hidden="true"
     >
       <img 
-        src="/images/frosting-swirl.svg" 
+        src="/images/frosting-swirl_file.svg" 
         alt="" 
         className="absolute inset-0 h-full w-full object-cover"
       />

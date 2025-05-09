@@ -125,9 +125,8 @@ export function Hero({ className }: HeroProps) {
                   loop
                   playsInline
                   className="absolute inset-0 h-full w-full object-cover"
-                  poster={getGithubPagesUrl("images/Hero/Hero_image.jpg")}
                 >
-                  <source src={getGithubPagesUrl("images/Hero/Hero_video.mp4")} type="video/mp4" />
+                  <source src={getGithubPagesUrl("images/hero/hero_video_file.mp4")} type="video/mp4" />
                 </video>
                 
                 {/* Decorative animated frame */}

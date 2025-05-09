@@ -36,7 +36,7 @@ export function Gallery({ className }: GalleryProps) {
   };
 
   // Generate gallery media items by category
-  const cakesItems = generateMediaPaths("Cakes", "cake", 64);
+  const cakesItems = generateMediaPaths("Cakes", "cake", 64, [54, 55, 62, 63, 64]); // These are MP4 files
   const sweetsItems = generateMediaPaths("Sweets", "Sweets", 14, [14]); // Sweets_14.mp4 is a video
   const cateringItems = generateMediaPaths("Catering", "catering", 10);
 

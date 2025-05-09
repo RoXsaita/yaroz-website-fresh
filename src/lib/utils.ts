@@ -36,12 +36,49 @@ export function getGithubPagesUrl(
   // Remove leading slash for relative paths
   const relativePath = lowerCasePath.startsWith('/') ? lowerCasePath.slice(1) : lowerCasePath;
   
+  // Define image directory mappings (old directory name to new directory name with suffix)
+  const directoryMappings: Record<string, string> = {
+    'images/aboutus/': 'images/aboutus-repo/',
+    'images/cakes/': 'images/cakes-repo/',
+    'images/sweets/': 'images/sweets-repo/',
+    'images/catering/': 'images/catering-repo/',
+    'images/hero/': 'images/hero-repo/',
+    'images/placeholders/': 'images/placeholders-repo/',
+    'images/testemonials/': 'images/testemonials-repo/',
+  };
+  
+  // First check if the path contains any of our known image directories
+  let processedPath = relativePath;
+  for (const [oldDir, newDir] of Object.entries(directoryMappings)) {
+    if (relativePath.includes(oldDir)) {
+      processedPath = relativePath.replace(oldDir, newDir);
+      break;
+    }
+  }
+  
+  // Add the _file suffix to image and video files
+  const fileExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.mp4'];
+  
+  // Check if this is an image/video file
+  if (fileExtensions.some(ext => processedPath.endsWith(ext))) {
+    const extensionIndex = processedPath.lastIndexOf('.');
+    if (extensionIndex !== -1) {
+      const baseName = processedPath.substring(0, extensionIndex);
+      const extension = processedPath.substring(extensionIndex);
+      
+      // Add _file before extension if it's not already there
+      if (!baseName.endsWith('_file')) {
+        processedPath = `${baseName}_file${extension}`;
+      }
+    }
+  }
+  
   // In production (GitHub Pages), we need paths relative to the site root without leading slash
   // In development, we need leading slash for proper serving from dev server
   const isProduction = process.env.NODE_ENV === 'production';
   
   // Add leading slash only in development mode
-  return isProduction ? relativePath : `/${relativePath}`;
+  return isProduction ? processedPath : `/${processedPath}`;
 }
 
 /**
